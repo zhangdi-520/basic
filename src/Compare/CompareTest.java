@@ -2,6 +2,7 @@ package Compare;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -60,21 +61,31 @@ public class CompareTest {
         arr[0] = new Goods("zhangsan",34);
         arr[1] = new Goods("zhangsan",39);
         arr[2] = new Goods("lisi",28);
-        Arrays.sort(arr, new Comparator() {
+        Arrays.sort(arr, new Comparator<Goods>() {
             @Override
-            public int compare(Object o1, Object o2) {
-                if(o1 instanceof Goods && o2 instanceof Goods) {
-                    Goods g1 = (Goods)o1;
-                    Goods g2 = (Goods)o2;
-                    if (g1.getName().equals(g2.getName())) {
-                        return -Double.compare(g1.getPrice(), g2.getPrice());
-                    }else{
-                        return g1.getName().compareTo(g2.getName());
-                    }
+            public int compare(Goods o1, Goods o2) {
+                if (o1.getName().equals(o2.getName())) {
+                    return -Double.compare(o1.getPrice(), o2.getPrice());
+                }else{
+                    return o1.getName().compareTo(o2.getName());
                 }
-                throw new RuntimeException("数据类型不一致");
             }
         });
+//        Arrays.sort(arr, new Comparator() {
+//            @Override
+//            public int compare(Object o1, Object o2) {
+//                if(o1 instanceof Goods && o2 instanceof Goods) {
+//                    Goods g1 = (Goods)o1;
+//                    Goods g2 = (Goods)o2;
+//                    if (g1.getName().equals(g2.getName())) {
+//                        return -Double.compare(g1.getPrice(), g2.getPrice());
+//                    }else{
+//                        return g1.getName().compareTo(g2.getName());
+//                    }
+//                }
+//                throw new RuntimeException("数据类型不一致");
+//            }
+//        });
         System.out.println(Arrays.toString(arr));
     }
 }
