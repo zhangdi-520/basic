@@ -82,5 +82,9 @@ public class CollectionTest {
         System.out.println(cll);
 
         //equals(Object obj)两个集合元素顺序必须相同，list是有序的
+
+        //toArray()集合转换成数组
+        Object[] objects = cll.toArray();
+
     }
 }
